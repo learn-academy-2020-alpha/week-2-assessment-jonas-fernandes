@@ -17,7 +17,6 @@
     // No need to change anything ABOVE this line ^
 
 
-
       class App extends React.Component{
         constructor(props){
           super(props)
@@ -29,11 +28,13 @@
         }
 
         nextMood = () => {
-          if(currentMood === moods.length - 1){
-            this.setState({ currentMood: currentMood = 0 })
-          } else {
-            this.setState({ currentMood: currentMood + 1 })
-          }
+          let next = Math.floor(Math.random() * this.state.moods.length)
+          this.setState({ currentMood: next })
+          // if(currentMood === moods.length - 1){
+          //   this.setState({ currentMood: currentMood = 0 })
+          // } else {
+          //   this.setState({ currentMood: currentMood + 1 })
+          // }
         }
 
         setThisMood = () => {
@@ -43,17 +44,24 @@
         render(){
           return(
             <div>
-              <MoodMeter
-                moodOptions={ this.state.moods[this.state.currentMood] }
+             <Header/>
+              <MoodMeter moodOptions={ this.state.moods[this.state.currentMood] }
                 next={ this.nextMood }
                 setThisMood={ this.setThisMood }
                 set={ this.state.setMood }
-              />
+                />
+            // I am not able to figure out how to make the Mood Options iterate.  
+          // Also, the use of the word "set" in many different ways is throwing me off and
+          // doing loops in my mind.
             </div>
           )
         }
       }
-
+      
+      
+      
+      
+      
       class Header extends React.Component{
         render(){
           return(
@@ -64,22 +72,24 @@
         }
       }
 
+
       class MoodMeter extends React.Component{
         render(){
           return(
+            <div>
               <h3>Mood Options:</h3>
-              <p style={{fontSize: "40px"}}>{ this.props.moodOptions }</p>
-              <button onClick={ }>Click Here For Next Mood Option</button>
-              <br />
-              <br />
+              <p style={{fontSize: "40px"}}> { this.props.moodOptions } </p>
+              <button onClick={ this.props.setThisMood }>Click Here For Next Mood Option</button>
+              <br/>
+              <br/>
               <h3>Save your mood here!</h3>
               <button onClick={ this.props.setThisMood }>Yup, this is me right now.</button>
               <h3>My mood:</h3>
-              <p style={{fontSize: "40px"}}>{ this.props.set }</p>
+              <p style={{fontSize: "40px"}}> { this.props.set }</p>
+            </div>
           )
         }
       }
-
 
 
 
