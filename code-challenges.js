@@ -16,9 +16,7 @@ var num3 = -7
 const divisible = (num) => {
     if(num % 3 === 0){
     return num + " is divisible by three"
-} else if (num % 3 >= 1){
-    return num + " is not divisible by three"
-} else if (num % 3 >= -3){
+} else if (num % 3 !== 0){
     return num + " is not divisible by three"
 }else{
     return "must type in a number"
